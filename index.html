@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Jane Eyre - Read & Understand</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e8f0fe">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ============================================================ -->
+    <!-- COMPACT STICKY HEADER                                         -->
+    <!-- ============================================================ -->
+    <div class="sticky-header-wrapper">
+        <div class="sticky-header-container">
+            <div class="sticky-header">
+                <div class="sticky-header-top">
+                    <div class="sticky-header-title">
+                        <h1>📖 Jane Eyre</h1>
+                        <span class="sticky-subtitle">Read & Understand</span>
+                    </div>
+                    <div class="sticky-header-buttons">
+                        <button class="btn btn-sm btn-secondary" onclick="resetProgress()" title="Reset Progress">
+                            🔄
+                        </button>
+                        <button class="btn btn-sm btn-secondary" onclick="openHelp()" title="Help">
+                            ❓
+                        </button>
+                        <button class="btn btn-sm btn-secondary" onclick="printFullStory()" title="Print Full Story">
+                            📄
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="sticky-progress">
+                    <div class="sticky-progress-label">
+                        <span>Progress:</span>
+                        <span id="sticky-progress-text">0 / 15</span>
+                    </div>
+                    <div class="sticky-progress-bar">
+                        <div id="sticky-progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+                
+                <!-- Current Lesson Indicator -->
+                <div class="sticky-current-lesson">
+                    <span>📖 Current: <strong id="sticky-current-lesson-text">Lesson 1: Chapter 1: My Story Begins (Part 1)</strong></span>
+                    <span style="font-size: 11px; color: #888;">Auto-saved</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MAIN CONTENT                                                  -->
+    <!-- ============================================================ -->
+    <div class="main-content-wrapper">
+        <!-- Goal Message -->
+        <div class="goal-banner">
+            <div class="goal">
+                <p>🧠 <strong>The Goal:</strong></p>
+                <p>To help your brain feel relaxed with unknown words and learn English naturally from context.</p>
+                <p class="tip">💡 Don't worry if you don't understand everything. Just read and enjoy. Your brain will do the rest.</p>
+            </div>
+        </div>
+
+        <!-- App Content -->
+        <div id="app">
+            <!-- Video Section - Collapsible -->
+            <div class="video-section">
+                <div class="video-toggle" onclick="toggleVideo()">
+                    <span id="video-toggle-icon">▶</span>
+                    <span id="video-toggle-text">Show Video</span>
+                    <span class="video-toggle-hint">(Full Audiobook)</span>
+                </div>
+                <div id="video-container" class="video-container collapsed">
+                    <video controls preload="metadata">
+                        <source src="assets/video/Jane Eyre Audiobook - Beginner Levels.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        🎬 Listen to the full audiobook. Pause, rewind, and replay as you like.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson List Toggle Button -->
+            <div class="lesson-list-toggle">
+                <button class="btn btn-secondary" onclick="toggleLessonList()" style="font-size: 14px; padding: 8px 16px;">
+                    📚 Show Lessons List
+                </button>
+                <span id="current-lesson-indicator" style="font-size: 14px; color: #4a7a9a; font-weight: 500;">
+                    Lesson 1 of 15
+                </span>
+            </div>
+
+            <!-- Lesson List (Collapsible) -->
+            <nav id="lesson-list" class="lesson-list-collapsed">
+                <!-- Generated by JavaScript -->
+            </nav>
+
+            <!-- Lesson Content (Always Visible) -->
+            <section id="lesson-content">
+                <!-- Generated by JavaScript -->
+                <div style="padding: 40px 20px; text-align: center; color: #888;">
+                    <p style="font-size: 20px;">📖</p>
+                    <p style="font-weight: 500;">Select a lesson to begin reading.</p>
+                    <p style="font-size: 14px;">Click "Show Lessons List" above to see all lessons.</p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <p>Every time you read, your brain is learning. Keep going!</p>
+                <p>Design by A.C.Gariano and Deepseek June 2026.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- HELP MODAL                                                    -->
+    <!-- ============================================================ -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📖 User Guide / 使い方ガイド</h2>
+                <button class="modal-close" onclick="closeHelp()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- English Version -->
+                <div class="manual-section">
+                    <h3>🇬🇧 English</h3>
+                    
+                    <h4>🧠 The Goal</h4>
+                    <p>To train your brain to feel comfortable when you don't know every word, to guess meaning from the story, and to build a natural "feel" for English—just like learning your first language.</p>
+                    
+                    <h4>💡 Important</h4>
+                    <ul>
+                        <li>Don't worry if you don't understand every word.</li>
+                        <li>Just read and enjoy the story.</li>
+                        <li>Your brain will do the rest.</li>
+                        <li>Every time you read, your brain is learning.</li>
+                    </ul>
+                    
+                    <h4>📱 How to Use</h4>
+                    <ol>
+                        <li><strong>Choose a Lesson:</strong> Click "Show Lessons List" then click any completed lesson or the current lesson.</li>
+                        <li><strong>Complete in Order:</strong> You must complete each lesson before moving to the next one.</li>
+                        <li><strong>Read the Story:</strong> Read carefully. Guess the meaning from context.</li>
+                        <li><strong>Practice Questions:</strong> Try the multiple choice questions for practice and instant feedback.</li>
+                        <li><strong>Discuss:</strong> Use the discussion questions with your teacher.</li>
+                        <li><strong>Mark as Complete:</strong> Click "☐ Mark Complete" to save your progress.</li>
+                        <li><strong>Navigate:</strong> Use "Next →" / "← Previous" or arrow keys (← ↑ → ↓).</li>
+                        <li><strong>Video:</strong> Click "Show Video" to watch the audiobook anytime.</li>
+                        <li><strong>Print:</strong> Click "📄 Print" to get all lessons together.</li>
+                    </ol>
+                    
+                    <h4>📱 Progress & Device Usage</h4>
+                    <p>Your progress is saved automatically in your browser (localStorage).</p>
+                    <ul>
+                        <li>✅ Your progress stays even if you close the app.</li>
+                        <li>✅ Your progress stays even if you restart your device.</li>
+                        <li>⚠️ Your progress is saved on <strong>THIS device only</strong>.</li>
+                        <li>⚠️ If you use a different device, your progress will NOT be transferred.</li>
+                    </ul>
+                    <p>💡 Tip: Use the "📄 Print" button to have a paper copy of all lessons.</p>
+                    <p>💡 Tip: If you switch devices, simply mark the lessons you've already completed.</p>
+                    
+                    <h4>⌨️ Keyboard Shortcuts</h4>
+                    <ul>
+                        <li><kbd>→</kbd> or <kbd>↓</kbd> = Next lesson (if current lesson is complete)</li>
+                        <li><kbd>←</kbd> or <kbd>↑</kbd> = Previous lesson</li>
+                    </ul>
+                    
+                    <h4>📊 Progress</h4>
+                    <p>Your progress is saved automatically in your browser. Even if you close the app, your completed lessons will still be marked.</p>
+                </div>
+                
+                <hr class="manual-divider">
+                
+                <!-- Japanese Version -->
+                <div class="manual-section">
+                    <h3>🇯🇵 日本語</h3>
+                    
+                    <h4>🧠 目標</h4>
+                    <p>すべての単語がわからなくても安心できるように、物語から意味を推測し、英語の自然な「感覚」を身につけるように脳を訓練すること。まるで母語を学ぶように。</p>
+                    
+                    <h4>💡 大切なこと</h4>
+                    <ul>
+                        <li>すべての単語がわからなくても心配しないでください。</li>
+                        <li>ただ読んで、物語を楽しんでください。</li>
+                        <li>あなたの脳が残りをやってくれます。</li>
+                        <li>読むたびに、あなたの脳は学んでいます。</li>
+                    </ul>
+                    
+                    <h4>📱 使い方</h4>
+                    <ol>
+                        <li><strong>レッスンを選ぶ：</strong> 「📚 レッスン一覧を表示」をクリックして、完了したレッスンまたは現在のレッスンをクリックします。</li>
+                        <li><strong>順番に完了させる：</strong> 次のレッスンに進む前に、各レッスンを完了する必要があります。</li>
+                        <li><strong>物語を読む：</strong> 注意深く読みましょう。文脈から意味を推測してみてください。</li>
+                        <li><strong>練習問題：</strong> 選択式の問題で練習し、即座にフィードバックを得られます。</li>
+                        <li><strong>話し合う：</strong> ディスカッションの質問を先生と話し合いましょう。</li>
+                        <li><strong>完了にする：</strong> 「☐ 完了にする」ボタンをクリックして進捗を保存します。</li>
+                        <li><strong>移動：</strong> 「次へ →」/「← 前へ」または矢印キー（← ↑ → ↓）を使用します。</li>
+                        <li><strong>動画：</strong> 「動画を表示」をクリックして、いつでもオーディオブックを視聴できます。</li>
+                        <li><strong>印刷：</strong> 「📄 印刷」ですべてのレッスンをまとめて印刷できます。</li>
+                    </ol>
+                    
+                    <h4>📱 進捗とデバイスの使用について</h4>
+                    <p>進捗は自動的にブラウザ（localStorage）に保存されます。</p>
+                    <ul>
+                        <li>✅ アプリを閉じても進捗は保持されます。</li>
+                        <li>✅ デバイスを再起動しても進捗は保持されます。</li>
+                        <li>⚠️ 進捗は<strong>このデバイスにのみ</strong>保存されます。</li>
+                        <li>⚠️ 別のデバイスを使用する場合、進捗は転送されません。</li>
+                    </ul>
+                    <p>💡 ヒント：「📄 印刷」ボタンですべてのレッスンを紙に印刷できます。</p>
+                    <p>💡 ヒント：デバイスを切り替える場合は、完了したレッスンを手動でマークしてください。</p>
+                    
+                    <h4>⌨️ キーボードショートカット</h4>
+                    <ul>
+                        <li><kbd>→</kbd> または <kbd>↓</kbd> = 次のレッスン（現在のレッスンが完了している場合）</li>
+                        <li><kbd>←</kbd> または <kbd>↑</kbd> = 前のレッスン</li>
+                    </ul>
+                    
+                    <h4>📊 進捗管理</h4>
+                    <p>進捗はブラウザに自動的に保存されます。アプリを閉じて再度開いても、完了したレッスンはマークされたままです。</p>
+                </div>
+                
+                <div class="manual-footer">
+                    <p>🌟 You can do this! / あなたならできます！</p>
+                    <p style="font-size: 14px; color: #666;">Enjoy the story! / 物語を楽しんでください！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TOAST NOTIFICATION                                            -->
+    <!-- ============================================================ -->
+    <div id="toast" class="toast">
+        <span id="toast-message"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/sw-register.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
