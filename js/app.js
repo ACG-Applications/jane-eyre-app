@@ -376,12 +376,13 @@ function checkAnswer(lessonId, questionIndex, selected, correct) {
 }
 
 // ============================================================
-// Load Lessons
+// Load Lessons - FIXED for GitHub Pages (relative path)
 // ============================================================
 
 async function loadLessons() {
     try {
-        const response = await fetch('/data/lessons.json');
+        // Use relative path for GitHub Pages compatibility
+        const response = await fetch('./data/lessons.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
