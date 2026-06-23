@@ -2,7 +2,7 @@
   "name": "Jane Eyre - Read & Understand",
   "short_name": "Jane Eyre",
   "description": "Learn English by reading Jane Eyre. Train your brain to understand naturally.",
-  "start_url": "/index.html",
+  "start_url": "/jane-eyre-app/index.html",
   "display": "standalone",
   "background_color": "#e8f0fe",
   "theme_color": "#e8f0fe",

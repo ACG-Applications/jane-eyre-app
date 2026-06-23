@@ -1,21 +1,21 @@
 const CACHE_NAME = 'jane-eyre-v1';
 const ASSETS = [
-    '/',
-    '/index.html',
-    '/css/style.css',
-    '/js/app.js',
-    '/js/sw-register.js',
-    '/data/lessons.json',
-    '/manifest.json',
-    '/assets/icons/favicon.ico',
-    '/assets/icons/icon-72x72.png',
-    '/assets/icons/icon-96x96.png',
-    '/assets/icons/icon-128x128.png',
-    '/assets/icons/icon-144x144.png',
-    '/assets/icons/icon-152x152.png',
-    '/assets/icons/icon-192x192.png',
-    '/assets/icons/icon-384x384.png',
-    '/assets/icons/icon-512x512.png'
+    '/jane-eyre-app/',
+    '/jane-eyre-app/index.html',
+    '/jane-eyre-app/css/style.css',
+    '/jane-eyre-app/js/app.js',
+    '/jane-eyre-app/js/sw-register.js',
+    '/jane-eyre-app/data/lessons.json',
+    '/jane-eyre-app/manifest.json',
+    '/jane-eyre-app/assets/icons/favicon.ico',
+    '/jane-eyre-app/assets/icons/icon-72x72.png',
+    '/jane-eyre-app/assets/icons/icon-96x96.png',
+    '/jane-eyre-app/assets/icons/icon-128x128.png',
+    '/jane-eyre-app/assets/icons/icon-144x144.png',
+    '/jane-eyre-app/assets/icons/icon-152x152.png',
+    '/jane-eyre-app/assets/icons/icon-192x192.png',
+    '/jane-eyre-app/assets/icons/icon-384x384.png',
+    '/jane-eyre-app/assets/icons/icon-512x512.png'
 ];
 
 // Install event - cache all assets
@@ -47,18 +47,14 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then(cachedResponse => {
-                // Return cached version if available
                 if (cachedResponse) {
                     return cachedResponse;
                 }
-                // Otherwise fetch from network
                 return fetch(event.request)
                     .then(response => {
-                        // Don't cache video files (too large)
                         if (event.request.url.includes('.mp4')) {
                             return response;
                         }
-                        // Cache other assets for future offline use
                         return caches.open(CACHE_NAME)
                             .then(cache => {
                                 cache.put(event.request, response.clone());
