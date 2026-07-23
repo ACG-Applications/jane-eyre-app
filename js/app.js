@@ -115,7 +115,7 @@ function getMultipleChoiceOptions(question, lessonId) {
             correct: 1
         },
         'Did Jane want to go to Lowood School?': {
-            options: ['Yes, she wanted to leave', 'No, she was scared', 'She didn\'t care', 'She wanted to stay'],
+            options: ['Yes, she wanted to leave Gateshead', 'No, she was scared', 'She didn\'t care', 'She wanted to stay'],
             correct: 0
         },
         // Lesson 4 questions
@@ -144,7 +144,7 @@ function getMultipleChoiceOptions(question, lessonId) {
             options: ['She was unkind', 'She was kind', 'She ignored her', 'She punished her'],
             correct: 1
         },
-        // Lesson 6 questions
+        // Lesson 6 questions - FIXED Q3
         'What happened to many of the girls at Lowood?': {
             options: ['They became sick', 'They left happily', 'They got rich', 'They moved away'],
             correct: 0
@@ -155,7 +155,7 @@ function getMultipleChoiceOptions(question, lessonId) {
         },
         'How long was Jane at Lowood School?': {
             options: ['2 years', '4 years', '6 years', '8 years'],
-            correct: 3
+            correct: 2
         },
         // Lesson 7 questions
         'What job did Jane want?': {
