@@ -16,6 +16,9 @@
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
     />
+    <!-- Allow rotation on all devices -->
+    <meta name="screen-orientation" content="both" />
+    <meta name="apple-mobile-web-app-orientations" content="all" />
 
     <!-- Icons -->
     <link
@@ -489,5 +492,72 @@
     <!-- JavaScript -->
     <script src="js/sw-register.js"></script>
     <script src="js/app.js"></script>
+
+    <!-- Rotation handler -->
+    <script>
+      // Handle orientation changes
+      function handleOrientationChange() {
+        const isLandscape = window.innerWidth > window.innerHeight;
+        const isMobile = window.innerWidth < 820;
+        const body = document.body;
+        
+        // Remove existing orientation classes
+        body.classList.remove('portrait-mobile', 'landscape-mobile', 'portrait-tablet', 'landscape-tablet');
+        
+        if (isMobile) {
+          if (isLandscape) {
+            body.classList.add('landscape-mobile');
+          } else {
+            body.classList.add('portrait-mobile');
+          }
+        } else if (window.innerWidth < 1024) {
+          // Tablet
+          if (isLandscape) {
+            body.classList.add('landscape-tablet');
+          } else {
+            body.classList.add('portrait-tablet');
+          }
+        }
+        
+        // Adjust video container height for landscape on mobile
+        const videoContainer = document.getElementById('video-container');
+        if (videoContainer && videoContainer.classList.contains('expanded')) {
+          if (isLandscape && isMobile) {
+            videoContainer.style.maxHeight = '80vh';
+          } else if (isLandscape && window.innerWidth < 1024) {
+            videoContainer.style.maxHeight = '70vh';
+          } else {
+            videoContainer.style.maxHeight = '';
+          }
+        }
+        
+        // Adjust lesson list max height
+        const lessonList = document.getElementById('lesson-list');
+        if (lessonList && lessonList.classList.contains('lesson-list-expanded')) {
+          if (isLandscape && isMobile) {
+            lessonList.style.maxHeight = '300px';
+          } else if (isLandscape && window.innerWidth < 1024) {
+            lessonList.style.maxHeight = '400px';
+          } else {
+            lessonList.style.maxHeight = '';
+          }
+        }
+      }
+
+      // Listen for orientation and resize events
+      window.addEventListener('orientationchange', function() {
+        // Wait for the orientation change to complete
+        setTimeout(handleOrientationChange, 300);
+      });
+      
+      window.addEventListener('resize', handleOrientationChange);
+      
+      // Initial check
+      document.addEventListener('DOMContentLoaded', function() {
+        handleOrientationChange();
+        // Also call after a small delay to ensure everything is rendered
+        setTimeout(handleOrientationChange, 500);
+      });
+    </script>
   </body>
 </html>

@@ -916,6 +916,265 @@ footer {
 }
 
 /* ============================================================ */
+/* ROTATION & LANDSCAPE SUPPORT                                 */
+/* ============================================================ */
+
+/* Portrait mode on mobile - default */
+@media (max-width: 820px) {
+  .portrait-mobile .sticky-header-title h1 {
+    font-size: 17px;
+  }
+  
+  .portrait-mobile .video-container.expanded {
+    max-height: 400px;
+  }
+}
+
+/* Landscape mode on mobile */
+@media (max-width: 820px) and (orientation: landscape) {
+  .sticky-header-wrapper {
+    padding: 4px 16px 0 16px;
+  }
+  
+  .sticky-header {
+    padding: 8px 16px 6px 16px;
+  }
+  
+  .sticky-header-title h1 {
+    font-size: 16px;
+  }
+  
+  .sticky-subtitle {
+    font-size: 11px;
+  }
+  
+  .sticky-header-buttons .btn-sm {
+    padding: 2px 7px !important;
+    font-size: 13px !important;
+  }
+  
+  .sticky-progress-label {
+    font-size: 10px;
+  }
+  
+  .sticky-progress-bar {
+    height: 4px;
+  }
+  
+  .sticky-current-lesson {
+    font-size: 10px;
+    margin-top: 4px;
+    padding-top: 4px;
+  }
+  
+  .main-content-wrapper {
+    padding: 0 16px 10px 16px;
+  }
+  
+  .goal-banner {
+    padding: 10px 14px 12px 14px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .goal-banner .goal p {
+    font-size: 13px;
+    margin-bottom: 3px;
+  }
+  
+  .goal-banner .tip {
+    font-size: 12px;
+  }
+  
+  #app {
+    padding: 12px 12px 16px;
+  }
+  
+  .lesson-header h3 {
+    font-size: 16px;
+  }
+  
+  .text-container p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  
+  .video-container.expanded {
+    max-height: 70vh !important;
+  }
+  
+  .btn {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+  
+  .lesson-item {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+  
+  .lesson-item .title {
+    font-size: 13px;
+  }
+  
+  .lesson-list-expanded {
+    max-height: 300px !important;
+  }
+  
+  .mc-option {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+  
+  footer {
+    margin-top: 16px;
+    padding-top: 10px;
+    font-size: 12px;
+  }
+  
+  .toast {
+    font-size: 12px;
+    padding: 8px 14px;
+    bottom: 14px;
+  }
+  
+  .video-toggle {
+    padding: 8px 12px;
+  }
+  
+  .video-toggle #video-toggle-text {
+    font-size: 13px;
+  }
+  
+  .video-toggle .video-toggle-hint {
+    font-size: 11px;
+  }
+}
+
+/* Extra small landscape phones */
+@media (max-width: 600px) and (orientation: landscape) {
+  .sticky-header-title h1 {
+    font-size: 14px;
+  }
+  
+  .sticky-header {
+    padding: 5px 12px 4px 12px;
+  }
+  
+  .sticky-header-buttons .btn-sm {
+    padding: 1px 6px !important;
+    font-size: 12px !important;
+  }
+  
+  .goal-banner .goal p {
+    font-size: 12px;
+  }
+  
+  .text-container p {
+    font-size: 14px;
+  }
+  
+  .lesson-header h3 {
+    font-size: 14px;
+  }
+  
+  .btn {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+  
+  .lesson-item {
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+  
+  .lesson-item .title {
+    font-size: 12px;
+  }
+  
+  #current-lesson-indicator {
+    font-size: 11px;
+  }
+  
+  .video-container.expanded {
+    max-height: 60vh !important;
+  }
+  
+  .question-block p {
+    font-size: 14px;
+  }
+  
+  .mc-option {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
+
+/* Tablet portrait */
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+  .sticky-header-title h1 {
+    font-size: 20px;
+  }
+  
+  .text-container p {
+    font-size: 18px;
+  }
+  
+  .goal-banner .goal p {
+    font-size: 16px;
+  }
+  
+  .video-container.expanded {
+    max-height: 500px;
+  }
+}
+
+/* Tablet landscape */
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: landscape) {
+  .sticky-header {
+    padding: 12px 20px 10px 20px;
+  }
+  
+  .sticky-header-title h1 {
+    font-size: 18px;
+  }
+  
+  .main-content-wrapper {
+    padding: 0 24px 20px 24px;
+  }
+  
+  .goal-banner {
+    padding: 14px 20px 16px 20px;
+  }
+  
+  #app {
+    padding: 18px 20px 22px;
+  }
+  
+  .text-container p {
+    font-size: 16px;
+  }
+  
+  .video-container.expanded {
+    max-height: 70vh !important;
+  }
+  
+  .lesson-list-expanded {
+    max-height: 400px !important;
+  }
+}
+
+/* Prevent zoom on double-tap in mobile */
+@media (max-width: 820px) {
+  button,
+  .btn,
+  .lesson-item,
+  .video-toggle {
+    touch-action: manipulation;
+  }
+}
+
+/* ============================================================ */
 /* MOBILE RESPONSIVE                                            */
 /* ============================================================ */
 
@@ -1350,28 +1609,5 @@ footer {
   .toast {
     background: #444;
     color: #e0d8d0;
-  }
-}
-
-/* Allow rotation and adapt layout */
-@media (orientation: landscape) {
-  /* Optional: Adjust styles for landscape mode */
-  .sticky-header-title h1 {
-    font-size: 1.1rem;
-  }
-  .lesson-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  /* Reduce video height in landscape */
-  video {
-    max-height: 60vh;
-  }
-}
-
-@media (orientation: portrait) {
-  /* Portrait-specific styles */
-  video {
-    max-height: 40vh;
   }
 }
