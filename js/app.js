@@ -375,7 +375,7 @@ function getMultipleChoiceOptions(question, lessonId) {
         "Mrs. Fairfax",
         "Grace Poole",
       ],
-      correct: 0,
+      correct: 1,
     },
     "What did the man in the church say?": {
       options: [
